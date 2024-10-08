@@ -4,16 +4,40 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Todo from "../../components/Todo";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
+const [formData,setFormData] = useState({
+  title:"",
+  description:"",
+});
 
+const onChangeHandler = (e) => {
+  const name = e.target.name;
+  const value = e.target.value;
+  setFormData(form => ({...form, [name]:value}));
+  console.log(formData);
+
+}
+const onSubmitHandler = async (e) => {
+  e.preventDefault();
+  try{
+
+    toast.success("From Submitted Successfully")
+  }
+  catch {
+
+  }
+}
   return (
     <main >
-      <form className="flex item-start flex-col gap-2 w-[80%] max-w-[600px] mt-24 px-2 max-auto">
-        <input type="text" name="title" placeholder="Enter title" className="border-2 w-full px-3 py-2" />
+      <ToastContainer/>
+      <form onSubmit = {onSubmitHandler} className="flex item-start flex-col gap-2 w-[80%] max-w-[600px] mt-24 px-2 max-auto">
+        <input value = {formData.title} onChange = {onChangeHandler} type="text" name="title" placeholder="Enter title" className="border-2 w-full px-3 py-2" />
 
-        <textarea name="description" placeholder="Enter Description" className="border-2 w-full px-3 py-2" />
-        <button type="submit" className="bg-orange-600 px-9 py-3 text-white"> Add Todo</button>
+        <textarea value = {formData.description} onChange = {onChangeHandler} name="description" placeholder="Enter Description" className="border-2 w-full px-3 py-2" />
+        <button type="submit" className="bg-orange-600 px-9 py-1 text-white"> Add Todo</button>
 
       </form>
 
@@ -42,6 +66,12 @@ const Home = () => {
           </thead>
           <tbody>
             
+             <Todo/>
+             
+             <Todo/>
+             
+             <Todo/>
+             
              <Todo/>
             
           </tbody>

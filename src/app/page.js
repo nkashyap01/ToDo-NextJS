@@ -28,11 +28,13 @@ const onSubmitHandler = async (e) => {
   }
   catch {
 
+    toast.error("error")
+
   }
 }
   return (
     <main >
-      <ToastContainer/>
+      <ToastContainer theme="dark" />
       <form onSubmit = {onSubmitHandler} className="flex item-start flex-col gap-2 w-[80%] max-w-[600px] mt-24 px-2 max-auto">
         <input value = {formData.title} onChange = {onChangeHandler} type="text" name="title" placeholder="Enter title" className="border-2 w-full px-3 py-2" />
 
